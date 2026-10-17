@@ -1,0 +1,469 @@
+/* Główna struktura */
+.home-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  padding-bottom: 100px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  background-color: #060609;
+  color: #ffffff;
+}
+
+/* ---------------------------------
+   HERO SECTION & GLITCH BACKGROUND
+------------------------------------ */
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px 20px 90px 20px;
+  overflow: hidden;
+}
+
+.image-background-container {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -2;
+  overflow: hidden;
+  background-color: #000;
+}
+
+/* Ustawienie przyciemnionego zdjęcia w tle */
+.bg-stock-image {
+  position: absolute;
+  top: -2%; left: -2%;
+  width: 104%; height: 104%;
+  background-image: url('tlo.png'); /* Referencja do przekazanego zdjęcia */
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.25) contrast(1.4) saturate(1.2); /* Bardzo przyciemnione, wyostrzony kontrast */
+}
+
+/* Pseudo-elementy dla efektu Glitch */
+.glitch-effect::before,
+.glitch-effect::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: inherit;
+  background-size: inherit;
+  background-position: inherit;
+  filter: brightness(0.4) contrast(1.5);
+  opacity: 0.7;
+}
+
+.glitch-effect::before {
+  left: 4px;
+  animation: glitch-anim-1 3s infinite linear alternate-reverse;
+  mix-blend-mode: color-dodge;
+}
+
+.glitch-effect::after {
+  left: -4px;
+  animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+  mix-blend-mode: exclusion;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at 50% 30%, rgba(5, 5, 12, 0.4) 0%, rgba(2, 2, 5, 0.95) 100%);
+}
+
+.cyber-grid-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: linear-gradient(rgba(255, 215, 0, 0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 215, 0, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.3;
+}
+
+.hero-content {
+  max-width: 950px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  z-index: 1;
+}
+
+/* POWIĘKSZONE LOGO */
+.large-logo-wrapper {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  animation: floatLargeLogo 6s ease-in-out infinite;
+}
+
+.large-hero-logo {
+  height: 280px; /* ZWIĘKSZONO Z 230px na 280px */
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 35px rgba(255, 215, 0, 0.35));
+  z-index: 2;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.large-hero-logo:hover {
+  transform: scale(1.06) rotate(2deg);
+}
+
+.logo-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.35) 0%, rgba(255, 215, 0, 0) 75%);
+  border-radius: 50%;
+  z-index: 1;
+  animation: pulseGlow 3.5s infinite alternate ease-in-out;
+}
+
+/* Reszta stylów Hero */
+.hero-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  padding: 9px 22px;
+  border-radius: 30px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+}
+
+.pill-dot {
+  width: 8px; height: 8px;
+  background-color: #ffd700;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #ffd700;
+  animation: dotBlink 2s infinite;
+}
+
+.hero-main-title {
+  font-size: 68px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  margin: 0;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.9);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #ffd700 45%, #ff8800 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 35px rgba(255, 215, 0, 0.4));
+}
+
+.hero-description {
+  font-size: 20px;
+  line-height: 1.65;
+  color: #d1d1d6;
+  max-width: 780px;
+  margin: 0;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.7);
+}
+
+.hero-cta-group {
+  display: flex; gap: 20px; margin-top: 15px;
+}
+
+.apple-button {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 18px 36px; border-radius: 20px;
+  font-size: 17px; font-weight: 600; text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.apple-button.primary-gold {
+  background: linear-gradient(135deg, #ffd700 0%, #f39c12 100%);
+  color: #030305; box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+}
+.apple-button.primary-gold:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 22px 50px rgba(255, 215, 0, 0.65);
+}
+
+.apple-button.secondary-glass {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff; backdrop-filter: blur(30px);
+}
+.apple-button.secondary-glass:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 215, 0, 0.5);
+  transform: translateY(-4px); box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+/* ---------------------------------
+   SEKCJE, ANIMACJE SCROLL & KARTY
+------------------------------------ */
+.section-wrapper {
+  max-width: 1250px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.section-heading {
+  display: flex; flex-direction: column; gap: 10px; text-align: left;
+}
+
+.sub-heading-tag {
+  font-size: 13px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; color: #ffd700;
+}
+
+.main-heading {
+  font-size: 42px; font-weight: 700; color: #ffffff;
+  letter-spacing: -0.02em; margin: 0;
+}
+
+.section-lead {
+  font-size: 18px; color: #86868b; margin: 0;
+}
+
+/* Animacje pojawiania się na Scroll (Intersection Observer) */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-animate.is-visible {
+  opacity: 1; transform: translateY(0);
+}
+
+/* Kaskadowe opóźnienia dla kart (potrzebne jest ustawienie klas potomnych lub w template) */
+.scroll-animate-cascade {
+  opacity: 0;
+  transform: translateY(40px);
+  /* transition-delay nadawane jest z poziomu wbudowanych stylów :style w v-for */
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-animate.is-visible .scroll-animate-cascade {
+  opacity: 1; transform: translateY(0);
+}
+
+
+/* KARTY TURNIEJOWE (Liquid Glass) */
+.tournaments-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 32px;
+}
+
+.apple-glass-card {
+  background: rgba(14, 14, 20, 0.75);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 38px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.apple-glass-card::before {
+  content: ''; position: absolute; top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+  transition: 0.6s;
+}
+
+.apple-glass-card:hover::before { left: 100%; }
+
+.hover-glow-effect:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(255, 215, 0, 0.4);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.95), 0 0 35px rgba(255, 215, 0, 0.15);
+}
+
+.card-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.badge-tag {
+  font-size: 12px; font-weight: 700; color: #ffd700;
+  background: rgba(255, 215, 0, 0.12); padding: 7px 16px;
+  border-radius: 12px; border: 1px solid rgba(255, 215, 0, 0.2);
+}
+.time-tag { font-size: 13px; color: #86868b; font-weight: 500; }
+.card-body-content { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
+.game-category { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #86868b; font-weight: 600; }
+.game-title { font-size: 28px; font-weight: 700; color: #ffffff; margin: 0; }
+.game-desc { font-size: 15px; line-height: 1.6; color: #d1d1d6; margin: 0; }
+.card-action-footer { padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.06); }
+.card-action-btn { color: #ffd700; text-decoration: none; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.3s ease; }
+.card-action-btn:hover { gap: 14px; }
+
+/* SEKCJA ORGANIZATORA (123concept) */
+.organizer-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: linear-gradient(135deg, rgba(20, 20, 28, 0.8) 0%, rgba(10, 10, 15, 0.95) 100%);
+}
+
+@media (min-width: 800px) {
+  .organizer-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+    padding: 50px;
+  }
+}
+
+.organizer-brand {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.organizer-name {
+  font-size: 38px;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.organizer-badge {
+  font-size: 14px;
+  color: #ffd700;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.organizer-text {
+  flex: 2;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #d1d1d6;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.organizer-text p {
+  margin: 0;
+}
+.organizer-text strong {
+  color: #ffffff;
+}
+
+/* BENTO GRID DLA ATRAKCJI */
+.bento-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 26px;
+}
+
+.bento-box-item {
+  background: linear-gradient(135deg, rgba(18, 18, 26, 0.85) 0%, rgba(10, 10, 15, 0.95) 100%);
+  backdrop-filter: blur(35px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 32px;
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-box-item:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(255, 215, 0, 0.35);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.6), 0 0 20px rgba(255,215,0,0.1);
+}
+
+.bento-icon-wrapper {
+  font-size: 34px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.bento-title { font-size: 20px; font-weight: 700; color: #ffffff; margin: 0 0 8px 0; }
+.bento-desc { font-size: 14px; line-height: 1.55; color: #86868b; margin: 0; }
+
+/* ---------------------------------
+   KLUCZOWE ANIMACJE (KEYFRAMES)
+------------------------------------ */
+@keyframes floatLargeLogo {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.3; transform: scale(0.9); }
+  100% { opacity: 0.7; transform: scale(1.15); }
+}
+
+@keyframes dotBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeInUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* KEYFRAMES EFEKTU GLITCH */
+@keyframes glitch-anim-1 {
+  0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
+  20% { clip-path: inset(60% 0 10% 0); transform: translate(3px, -2px); }
+  40% { clip-path: inset(40% 0 50% 0); transform: translate(-3px, 3px); }
+  60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -1px); }
+  80% { clip-path: inset(10% 0 70% 0); transform: translate(-4px, 2px); }
+  100% { clip-path: inset(30% 0 50% 0); transform: translate(3px, -3px); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -2px); }
+  20% { clip-path: inset(30% 0 20% 0); transform: translate(-3px, 1px); }
+  40% { clip-path: inset(70% 0 10% 0); transform: translate(3px, -3px); }
+  60% { clip-path: inset(20% 0 50% 0); transform: translate(-2px, 2px); }
+  80% { clip-path: inset(50% 0 30% 0); transform: translate(4px, -1px); }
+  100% { clip-path: inset(5% 0 80% 0); transform: translate(-3px, 3px); }
+}
+
+/* RESPONSYWNOŚĆ */
+@media (max-width: 900px) {
+  .hero-main-title { font-size: 46px; }
+  .large-hero-logo { height: 200px; } /* Proporcjonalne zmniejszenie na mniejszych ekranach */
+  .logo-glow { width: 220px; height: 220px; }
+  .section-wrapper { padding: 0 20px; gap: 40px; }
+}
+
+@media (max-width: 600px) {
+  .hero-main-title { font-size: 36px; }
+  .large-hero-logo { height: 160px; }
+  .hero-cta-group { flex-direction: column; width: 100%; }
+  .apple-button { width: 100%; justify-content: center; }
+}

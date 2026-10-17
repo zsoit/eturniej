@@ -1,0 +1,402 @@
+/* Efekt Liquid Glass Near-Black Apple Style */
+.apple-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(5, 5, 7, 0.85);
+  backdrop-filter: blur(35px) saturate(200%);
+  -webkit-backdrop-filter: blur(35px) saturate(200%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  align-items: center;
+}
+
+.apple-nav-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+.apple-logo {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 21px;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.15);
+}
+
+.nav-status {
+  color: #86868b;
+  font-size: 14px;
+}
+.nav-status.error {
+  color: #ff453a;
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+  display: none;
+}
+
+.desktop-menu-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 45px;
+}
+
+.desktop-menu-item {
+  position: relative; /* Kluczowe dla poprawnego pozycjonowania podmenu */
+}
+
+.desktop-link-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: transparent;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.desktop-link-wrapper:hover {
+  background: rgba(255, 215, 0, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 215, 0, 0.15);
+}
+
+.apple-link {
+  color: #d1d1d6;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.apple-link:hover,
+.desktop-link-wrapper:hover .apple-link {
+  color: #ffd700;
+}
+
+/* Złoty kolor dla aktywnego elementu (URL) */
+.apple-link.router-link-active,
+.sub-link.router-link-active {
+  color: #ffd700 !important;
+  font-weight: 600;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.desktop-link-wrapper.has-active-child .apple-link,
+.desktop-link-wrapper.has-active-child .desktop-arrow-btn {
+  color: #ffd700 !important;
+}
+
+.desktop-arrow-btn {
+  background: none;
+  border: none;
+  color: #86868b;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 4px;
+  transition: transform 0.3s ease, color 0.2s;
+}
+
+.desktop-link-wrapper:hover .desktop-arrow-btn {
+  color: #ffd700;
+  transform: rotate(180deg);
+}
+
+/* Podmenu rozwijane po najechaniu myszką na .desktop-menu-item */
+.desktop-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: absolute;
+  top: 100%; /* Wyrównanie tuż pod elementem nadrzędnym */
+  left: 0;
+  margin-top: 10px;
+  background: rgba(10, 10, 13, 0.95);
+  backdrop-filter: blur(45px) saturate(200%);
+  -webkit-backdrop-filter: blur(45px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  list-style: none;
+  padding: 18px 22px;
+  min-width: 260px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  
+  /* Ukryte domyślnie, pojawiają się po najechaniu na rodzica (.desktop-menu-item) */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Kiedy najedziemy na element nadrzędny, podmenu się wysuwa */
+.desktop-menu-item:hover .desktop-submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.sub-link {
+  font-size: 16px !important;
+  display: block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: #d1d1d6;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sub-link:hover {
+  background: rgba(255, 215, 0, 0.08);
+  color: #ffd700 !important;
+}
+
+/* Hamburger Button (Mobile) */
+.hamburger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  z-index: 1010;
+}
+
+.icon-bar {
+  display: block;
+  width: 100%;
+  height: 2.2px;
+  background-color: #f5f5f7;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.icon-bar.top-x {
+  transform: translateY(4.6px) rotate(45deg);
+}
+.icon-bar.bottom-x {
+  transform: translateY(-4.6px) rotate(-45deg);
+}
+
+/* Mobile Fullscreen Liquid Glass Overlay */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(3, 3, 5, 0.96);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
+  display: flex;
+  flex-direction: column;
+  padding-top: 110px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1005;
+  overflow-y: auto;
+}
+
+.mobile-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu-inner {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.mobile-menu-root {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.mobile-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 18px;
+}
+
+.mobile-link {
+  color: #f5f5f7;
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: color 0.2s;
+}
+
+.mobile-link:hover,
+.mobile-link.router-link-active {
+  color: #ffd700;
+}
+
+.mobile-toggle-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  color: #f5f5f7;
+  font-size: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.mobile-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.mobile-submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-left: 20px;
+}
+
+.mobile-submenu.open {
+  max-height: 600px;
+  margin-top: 18px;
+}
+
+.sub-mobile-link {
+  font-size: 22px !important;
+  color: #86868b !important;
+  font-weight: 400 !important;
+}
+
+.sub-mobile-link.router-link-active {
+  color: #ffd700 !important;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: block;
+  }
+  .hamburger-btn, .mobile-overlay {
+    display: none !important;
+  }
+}
+
+.desktop-menu-item {
+  position: relative;
+  /* Dodajemy niewidoczny obszar dolny, by myszka nie traciła hover podczas schodzenia do podmenu */
+  padding-bottom: 12px;
+  margin-bottom: -12px;
+}
+
+/* Domyślnie ukryte podmenu */
+.desktop-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: var(--apple-bg-submenu);
+  backdrop-filter: blur(45px) saturate(200%);
+  -webkit-backdrop-filter: blur(45px) saturate(200%);
+  border: 1px solid var(--apple-border-submenu);
+  border-radius: 18px;
+  list-style: none;
+  padding: 18px 22px;
+  min-width: 260px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Wyświetlanie sterowane klasą .show przydzielaną przez JS */
+.desktop-submenu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Podświetlenie całej ramki rodzica po najechaniu (JS doda klasę .is-hovered) */
+.desktop-link-wrapper.is-hovered {
+  background: var(--accent-gold-glow);
+  box-shadow: inset 0 0 0 1px var(--accent-gold-glow);
+}
+
+.desktop-link-wrapper.is-hovered .apple-link,
+.desktop-link-wrapper.is-hovered .desktop-arrow-btn {
+  color: var(--accent-gold) !important;
+}
+
+/* Obrót strzałki */
+.desktop-arrow-btn.rotated {
+  transform: rotate(180deg);
+  color: var(--accent-gold) !important;
+}
+
+
+.apple-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--apple-text-main);
+}
+
+.logo-image {
+  height: 55px; /* Wysokość dopasowana do paska menu Apple (wysokość header to 70px) */
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.logo-image:hover {
+  opacity: 0.9;
+}
+
+.logo-text {
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.15);
+}

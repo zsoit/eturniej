@@ -1,0 +1,169 @@
+.partners-container {
+  width: 100%;
+  padding: 40px 20px 80px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+}
+
+.partners-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.main-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-align: center;
+  line-height: 1.25;
+}
+
+/* Kategoryzacja i Linie */
+.categories-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.category-block {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.category-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.category-title {
+  font-size: 27px;
+  font-weight: 600;
+  color: var(--accent-gold, #ffd700);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.article-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%);
+}
+
+/* Siatka Grid */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+/* Karta Partnera */
+.partner-card {
+  background: rgba(10, 10, 13, 0.85);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 30px 20px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-decoration: none;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.partner-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+/* Kontener logo - 200x200 */
+.logo-wrapper {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Obrazek logo - 200x200 */
+.logo-image {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.partner-card:hover .logo-image {
+  transform: scale(1.05);
+}
+
+.partner-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #86868b;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.partner-card:hover .partner-name {
+  color: #f5f5f7;
+}
+
+/* Statusy */
+.status-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  background: rgba(10, 10, 13, 0.6);
+  border-radius: 20px;
+  color: #86868b;
+  font-weight: 500;
+  gap: 16px;
+}
+
+.status-box.error {
+  color: #ff453a;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--accent-gold, #ffd700);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+  .partner-card {
+    padding: 24px 16px;
+  }
+  .main-title {
+    font-size: 28px;
+  }
+  .logo-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+  .logo-wrapper, .logo-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    max-height: 200px;
+  }
+}
