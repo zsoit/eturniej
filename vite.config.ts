@@ -7,6 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/eturniej/', // <-- DODANE: ścieżka bazowa dla GitHub Pages (nazwa Twojego repozytorium)
   plugins: [
     vue(),
     vueJsx(),

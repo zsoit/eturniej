@@ -5,11 +5,11 @@ import { ref, onMounted } from 'vue'
 const regulationsCards = ref([
   {
     id: 'lol-regulations',
-    title: 'Regulamin Turnieju LoL',
+    title: 'Regulamin KoDoS',
     category: 'Oficjalny Dokument',
     description: 'Zapoznaj się z pełnym regulaminem, zasadami fair play, formatem rozgrywek oraz harmonogramem turniejów League of Legends.',
     linkText: 'Zobacz Regulamin',
-    linkUrl: '/regulamin/league-of-legends', // Wewnętrzny router-link
+    linkUrl: '/regulamin.pdf', // Wewnętrzny router-link
     isExternal: false,
     icon: '📜',
     accentColor: '#ffd700' // Złoty
