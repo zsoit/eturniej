@@ -3,32 +3,49 @@ import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const rawMenuData = ref([])
-const loading = ref(true)
-const error = ref(null)
+
+// Bezpośrednie przypisanie dostarczonych danych do tablicy menu
+const rawMenuData = ref([
+  {
+    "id": 1,
+    "title": "Strona Główna",
+    "path": "/home",
+    "parent_id": "",
+    "sort_order": "1"
+  },
+  {
+    "id": 2,
+    "title": "Aktualności",
+    "path": "/aktualnosci",
+    "parent_id": "",
+    "sort_order": "2"
+  },
+  {
+    "id": 3,
+    "title": "Prelekcje",
+    "path": "/prelekcje",
+    "parent_id": "",
+    "sort_order": "3"
+  },
+  {
+    "id": 4,
+    "title": "Partnerzy",
+    "path": "/partnerzy",
+    "parent_id": "",
+    "sort_order": "4"
+  },
+  {
+    "id": 5,
+    "title": "Regulaminy",
+    "path": "/regulaminy",
+    "parent_id": "",
+    "sort_order": "5"
+  }
+])
 
 // Stany otwartych podmenu (dla JS hover) oraz menu mobilnego
 const activeDropdowns = ref({})
 const isMobileMenuOpen = ref(false)
-
-const fetchMenu = async () => {
-  try {
-    const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8989'
-    const response = await fetch(`${API_BASE_URL}/menu`)
-    if (!response.ok) throw new Error(`Błąd HTTP: ${response.status}`)
-    const result = await response.json()
-    if (result.status === 'success') {
-      rawMenuData.value = result.data
-    } else {
-      throw new Error('API zwróciło nieudany status')
-    }
-  } catch (err) {
-    error.value = err.message
-    console.error('Nie udało się pobrać menu:', err)
-  } finally {
-    loading.value = false
-  }
-}
 
 const hierarchicalMenu = computed(() => {
   const map = {}
@@ -82,10 +99,6 @@ const isItemActive = (item) => {
   if (item.path !== '/' && route.path.startsWith(item.path)) return true
   return false
 }
-
-onMounted(() => {
-  fetchMenu()
-})
 </script>
 
 <template>
@@ -93,17 +106,13 @@ onMounted(() => {
     <div class="apple-nav-container">
       
       <!-- Logo z grafiką /logo1.png -->
-        <router-link to="/" class="apple-logo">
-          <img src="/logo1.png" alt="eTurniej Koszalin" class="logo-image" />
-          kodes.info.pl
-          <!-- <span class="logo-text">eTurniej Koszalin</span> -->
+      <router-link to="/" class="apple-logo">
+        <img src="/logo1.png" alt="eTurniej Koszalin" class="logo-image" />
+        KoDeS
       </router-link>
 
-      <div v-if="loading" class="nav-status">Ładowanie...</div>
-      <div v-else-if="error" class="nav-status error">Błąd API</div>
-
       <!-- Desktop Navigation Menu -->
-      <nav v-else class="desktop-nav">
+      <nav class="desktop-nav">
         <ul class="desktop-menu-list">
           <!-- Nasłuchujemy mouseenter i mouseleave na CAŁYM <li> -->
           <li 

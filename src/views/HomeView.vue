@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 const mainTournaments = ref([
   {
@@ -21,13 +21,13 @@ const mainTournaments = ref([
     accentColor: '#00e5ff'
   },
   {
-    id: 'cs',
-    title: 'Counter-Strike 2',
-    type: 'Szybkie Starcia (5v5)',
-    time: '11:00 - 17:00',
-    description: 'Dynamiczne starcia taktyczne. Precyzja, refleks i komunikacja na najwyższym poziomie.',
-    badge: 'Turniej FPS',
-    accentColor: '#ff453a'
+    id: 'retro',
+    title: 'Retro Gry',
+    type: 'Retro Games',
+    time: '10:00 - 16:00',
+    description: 'Oldschoolowe doświadczenie, dla największych koneserów.',
+    badge: 'Open / Turniej 1v1',
+    accentColor: '#00e5ff'
   }
 ])
 
@@ -35,22 +35,92 @@ const extraZones = ref([
   {
     id: 'ftp',
     icon: '🎮',
-    title: 'Strefa Free to Play',
-    desc: 'Stanowiska z najnowszym sprzętem e-sportowym dostępne dla wszystkich odwiedzających.'
+    title: 'Strefa Kibica - Free to Play',
+    desc: 'Zagraj ze znajomymi w najnowsze tytuły oraz klasyki retro.'
   },
   {
     id: 'stream',
     icon: '📡',
-    title: 'Transmisja Live & Komentarz',
-    desc: 'Na żywo z profesjonalnym komentarzem e-sportowym na naszym kanale Twitch.'
+    title: 'Strefa Edukacji – prelekcje i prezentacje',
+    desc: 'Dowiedz się więcej o rozwoju branży e-sportowej i nowych technologiach.'
   },
   {
     id: 'cosplay',
     icon: '🏆',
-    title: 'Pula Nagród & Puchary',
-    desc: 'Unikalne trofea, nagrody rzeczowe od partnerów oraz certyfikaty dla zwycięzców.'
+    title: 'Transmisja Live',
+    desc: 'Oglądaj zmagania zawodników na żywo z profesjonalnym komentarzem.'
   }
 ])
+
+// Główni Partnerzy (Karty ze szczegółowym opisem)
+const mainPartners = ref([
+  {
+    id: 'public-sector-partner',
+    category: 'Główny Partner Sektora Publicznego',
+    title: 'Ministerstwo Cyfryzacji',
+    logo: '/partners/ministerstwo.png',
+    alt: 'Logo Ministerstwo Cyfryzacji',
+    description: 'Ministerstwo Cyfryzacji (MC) to polski urząd administracji rządowej odpowiedzialny za informatyzację, rozwój usług cyfrowych (takich jak aplikacja mObywatel) oraz cyberbezpieczeństwo Rzeczypospolitej Polskiej. Siedziba resortu mieści się przy ul. Królewskiej 27 w Warszawie. Sekretarzem stanu w Ministerstwie jest Rafał Rosiński, który objął Patronat nad naszą imprezą.'
+  },
+  {
+    id: 'education-partner1',
+    category: 'Główny Partner Sektora Edukacji',
+    title: 'Politechnika Koszalińska',
+    logo: '/partners/pk.png',
+    alt: 'Logo Politechnika Koszalińska WEiI',
+    description: 'Politechnika Koszalińska to największa państwowa uczelnia techniczna na Pomorzu Środkowym, założona 8 czerwca 1968 roku (początkowo jako Wyższa Szkoła Inżynierska). Status politechniki oraz obecną nazwę zyskała 1 września 1996 roku. Stanowisko rektora uczelni piastuje dr hab. Danuta Zawadzka, prof. PK. Politechnika Koszalińska jest także partnerem technologicznym 2. Koszalińskiego Dnia E - Sportu  Więcej o Uczelni na  www.tu.koszalin.pl'
+  },
+  {
+    id: 'education-partner2',
+    category: 'Główny Partner Sektora Edukacji',
+    title: 'Wydział Elektroniki i Informatyki PK',
+    logo: '/partners/pk-weii.png',
+    alt: 'Logo Politechnika Koszalińska WEiI',
+    description: 'Wydział Elektroniki i Informatyki Politechniki Koszalińskiej (WEiI) to jeden z wiodących i najbardziej dynamicznie rozwijających się wydziałów uczelni, kształcący specjalistów dla nowoczesnego sektora wysokich technologii (ICT).'
+  }
+])
+
+// Pełne dane z API / tablicy JSON
+const rawPartnersList = ref([
+  { id: 14, name: "Edu Day", category: "Sponsorzy", logo_url: "partners/edu-day.png", type: "edu-day", website: "https://eduday.pl/" },
+
+  { id: 15, name: "Entevo", category: "Sponsorzy", logo_url: "partners/entevo.png", type: "entevo", website: "https://entevo.pl/" },
+
+  // { id: 16, name: "radio eska", category: "Patroni medialni", logo_url: "partners/eska.png", type: "eska", website: "https://www.eska.pl/" },
+
+  // { id: 17, name: "TVP3", category: "Patroni medialni", logo_url: "partners/tvp3.png", type: "tvp3", website: "https://regiony.tvp.pl/" },
+
+  { id: 18, name: "Koszalin - Centrum Pomorza", category: "Patronat", logo_url: "partners/koszalin.png", type: "koszalin", website: "https://koszalin.pl/" },
+
+  { id: 19, name: "Politechnika Koszalińska", category: "Główni Partnerzy Sektora Edukacji", logo_url: "pk.png", type: "pk", website: "https://tu.koszalin.pl" },
+
+  // { id: 20, name: "Wydział Elektroniki i Informatyki Politechniki Koszalińskiej", category: "Główni Partnerzy Sektora Edukacji", logo_url: "assets/logo_url_6ace42d124a28.png", type: "weii-pk", website: "https://tu.koszalin.pl/weii" },
+
+  { id: 21, name: "Zespół Szkół nr 1 im. Mikołaja Kopernika w Koszalinie", category: "Główni Partnerzy Sektora Edukacji", logo_url: "partners/zs-kopernik.png", type: "zs1", website: "http://www.ekonom.koszalin.pl/" },
+
+  { id: 22, name: "Miasto Koszalin", category: "Patronat", logo_url: "partners/koszalin_kon.png", type: "koszalin-miasto", website: "https://koszalin.pl" },
+
+  // { id: 23, name: "Ministerstwo Cyfryzacji", category: "Główny Partner Sektora Publicznego", logo_url: "assets/logo_url_6ace4367d4379.png", type: "ministerstwo-cyfryzacji", website: "https://www.gov.pl/web/cyfryzacja" }
+])
+
+// Filtrowanie: Wykluczamy Ministerstwo oraz WEiI/PK, które są wyżej
+const sliderPartners = computed(() => {
+  const excludedTypes = ['ministerstwo-cyfryzacji', 'weii-pk', 'pk']
+  return rawPartnersList.value.filter(p => !excludedTypes.includes(p.type))
+})
+
+// Ref do ręcznego przewijania slidera
+const sliderTrack = ref(null)
+
+const scrollSlider = (direction) => {
+  if (sliderTrack.value) {
+    const scrollAmount = 300
+    sliderTrack.value.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    })
+  }
+}
 
 // Inicjalizacja animacji pojawiania się przy scrollowaniu
 onMounted(() => {
@@ -58,12 +128,10 @@ onMounted(() => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible')
-        // Odkomentuj poniższą linię, jeśli chcesz, aby animacja wykonała się tylko raz:
-        // observer.unobserve(entry.target)
       }
     })
   }, {
-    threshold: 0.15, // Element musi być widoczny w 15%, by odpalić animację
+    threshold: 0.15,
     rootMargin: "0px 0px -50px 0px"
   })
 
@@ -76,18 +144,15 @@ onMounted(() => {
 <template>
   <div class="home-container">
     
-    <!-- Hero Section z dużym logo i efektem GLITCH w tle -->
+    <!-- Hero Section -->
     <section class="hero-section">
       <div class="image-background-container">
-        <!-- Zmieniono na ciemny, animowany glitch ze wskazanego zdjęcia -->
         <div class="bg-stock-image glitch-effect"></div>
         <div class="video-overlay"></div>
         <div class="cyber-grid-overlay"></div>
       </div>
 
       <div class="hero-content animate-fade-in">
-        
-        <!-- POWIĘKSZONE LOGO Z ANIMACJĄ -->
         <div class="large-logo-wrapper">
           <div class="logo-glow"></div>
           <img src="/logo1.png" alt="Koszaliński Dzień E-Sportu Logo" class="large-hero-logo" />
@@ -103,42 +168,98 @@ onMounted(() => {
         </h1>
 
         <p class="hero-description">
-          Największe święto graczy i pasjonatów technologii w regionie. Rywalizuj w League of Legends, EA Sports FC oraz CS2, kibicuj najlepszym i wygrywaj nagrody!
+          Rywalizuj w League of Legends, EA Sports FC oraz Retro Gry, kibicuj najlepszym i wygrywaj nagrody!
         </p>
         
         <div class="hero-cta-group">
           <router-link to="/aktualnosci" class="apple-button primary-gold">
-            <span>Aktualności & Wpisowe</span>
+            <span>Aktualności & Zapisy</span>
             <span class="btn-arrow">→</span>
           </router-link>
-          <a href="#turnieje" class="apple-button secondary-glass">
-            Zobacz Turnieje
+          <a href="/regulaminy" class="apple-button secondary-glass">
+            Zapisz się
           </a>
         </div>
-
       </div>
     </section>
 
-    <!-- Nowa Sekcja: Organizator (123concept) -->
+    <!-- Sekcja: Organizator (123concept) -->
     <section class="section-wrapper scroll-animate">
       <div class="section-heading">
         <span class="sub-heading-tag">Organizator Wydarzenia</span>
-        <h2 class="main-heading">123concept</h2>
+        <h2 class="main-heading">123Games by Agencja 123Concept</h2>
       </div>
 
       <div class="apple-glass-card organizer-card hover-glow-effect">
         <div class="organizer-brand">
-          <h3 class="organizer-name">123concept</h3>
-          <span class="organizer-badge">Agencja Eventowo-Technologiczna</span>
+          <span class="organizer-badge">AGENCJA EVENTOWO-TECHNOLOGICZNA</span>
+          <img src="/123logo-wh.png" alt="123concept logo" class="organizer-logo" />
         </div>
+        
         <div class="organizer-text">
           <p>
-            Jako <strong>123concept</strong> od lat kreujemy niezapomniane doświadczenia, łącząc innowacyjne technologie z branżą rozrywkową. Jesteśmy dumnym pomysłodawcą i głównym organizatorem Koszalińskiego Dnia E-Sportu.
+            Jako <strong>123concept</strong> od lat kreujemy niezapomniane doświadczenia, łącząc innowacyjne technologie z branżą rozrywkową. Jesteśmy dumnym pomysłodawcą i głównym organizatorem koszalińskiej Ligi E-Sportu, która tworzy 2 - edycję Koszalińskiego Dnia E-Sportu.
           </p>
           <p>
             Nasz zespół tworzą profesjonaliści i pasjonaci gamingu. Zapewniamy najwyższą jakość realizacji turniejowych, widowiskową oprawę wizualną oraz profesjonalne zaplecze techniczne – udowadniając, że lokalne inicjatywy potrafią dorównać standardom największych światowych aren e-sportowych. Tworzymy to wydarzenie z myślą o graczach, społeczności i rozwoju lokalnego rynku technologicznego.
           </p>
         </div>
+      </div>
+    </section>
+
+    <!-- Sekcja: Główni Partnerzy -->
+    <section class="section-wrapper scroll-animate">
+      <div class="section-heading">
+        <span class="sub-heading-tag">Wspierają nas</span>
+        <h2 class="main-heading">Główni Partnerzy</h2>
+      </div>
+
+      <div class="partners-list">
+        <div 
+          v-for="partner in mainPartners" 
+          :key="partner.id" 
+          class="apple-glass-card partner-card hover-glow-effect"
+        >
+          <div class="partner-brand">
+            <span class="partner-badge">{{ partner.category }}</span>
+            <img :src="partner.logo" :alt="partner.alt" class="partner-logo" />
+            <h3 class="partner-title">{{ partner.title }}</h3>
+          </div>
+          <div class="partner-text">
+            <p>{{ partner.description }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOWA SEKCJA: Slider / Karuzela Pozostałych Partnerów -->
+    <section class="section-wrapper scroll-animate">
+      <div class="section-heading">
+        <span class="sub-heading-tag">Wsparcie i Patronat</span>
+        <h2 class="main-heading">Wspierają nas</h2>
+      </div>
+
+      <div class="slider-wrapper">
+        <button class="slider-arrow prev" @click="scrollSlider('left')" aria-label="Poprzedni">‹</button>
+        
+        <div class="slider-track" ref="sliderTrack">
+          <a 
+            v-for="item in sliderPartners" 
+            :key="item.id" 
+            :href="item.website" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="slider-card apple-glass-card hover-glow-effect"
+          >
+            <span class="slider-badge">{{ item.category }}</span>
+            <div class="slider-logo-wrapper">
+              <img :src="`/${item.logo_url}`" :alt="item.name" class="slider-logo" />
+            </div>
+            <h4 class="slider-title">{{ item.name }}</h4>
+          </a>
+        </div>
+
+        <button class="slider-arrow next" @click="scrollSlider('right')" aria-label="Następny">›</button>
       </div>
     </section>
 
@@ -178,7 +299,7 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- Dodatkowe Strefy & Atrakcje (Apple Bento Grid) -->
+    <!-- Dodatkowe Strefy & Atrakcje (Bento Grid) -->
     <section class="section-wrapper scroll-animate">
       <div class="section-heading">
         <span class="sub-heading-tag">Atrakcje</span>
@@ -208,32 +329,29 @@ onMounted(() => {
 @import '@/assets/css/homePage.css';
 </style>
 
-
 <style>
-/* Główny kontener sekcji Hero z obrazem w tle */
+/* ==========================================================
+   HERO SECTION
+   ========================================================== */
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: 85vh; /* Wysokość sekcji */
+  min-height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 10px;
-  
-  /* Obraz w tle + ciemny gradient nakładkowy dla czytelności tekstu */
+  padding: 10px;
   background-image: linear-gradient(
       to bottom, 
       rgba(10, 10, 13, 0.6) 0%, 
       rgba(10, 10, 13, 0.9) 100%
     ), 
-    url('/tlo.png'); /* Podmień na ścieżkę do swojego pliku */
-    
+    url('/tlo.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* Styl dla zawartości wewnątrz sekcji */
 .hero-content {
   position: relative;
   z-index: 2;
@@ -244,5 +362,216 @@ onMounted(() => {
   align-items: center;
   text-align: center;
   gap: 20px;
+}
+
+/* ==========================================================
+   WSPÓLNE STYLE DLA SEKCJI ORGANIZATORA I PARTNERÓW
+   ========================================================== */
+
+.organizer-card,
+.partner-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3rem;
+  padding: 3rem;
+  margin-top: 2rem;
+}
+
+.organizer-brand,
+.partner-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 300px;
+}
+
+.organizer-badge,
+.partner-badge {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffb700;
+  margin-bottom: 1rem;
+}
+
+.organizer-logo,
+.partner-logo {
+  max-width: 250px;
+  height: auto;
+  display: block;
+  margin-bottom: 0.75rem;
+  object-fit: contain;
+}
+
+.organizer-title,
+.partner-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.organizer-text,
+.partner-text {
+  flex: 1;
+  color: #d1d1d1;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.organizer-text p,
+.partner-text p {
+  margin: 0 0 1.25rem 0;
+}
+
+.organizer-text p:last-child,
+.partner-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================
+   STYLE SLIDERA / KARUZELI PARTNERÓW
+   ========================================================== */
+
+.slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.slider-track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0.5rem;
+  scrollbar-width: none; /* Ukryj scrollbar dla Firefox */
+}
+
+.slider-track::-webkit-scrollbar {
+  display: none; /* Ukryj scrollbar dla Chrome/Safari */
+}
+
+.slider-card {
+  flex: 0 0 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.75rem 1.25rem;
+  text-decoration: none;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.slider-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 183, 0, 0.4);
+}
+
+.slider-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ffb700;
+  margin-bottom: 1rem;
+}
+
+.slider-logo-wrapper {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.slider-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: brightness(0.9) contrast(1.1);
+  transition: filter 0.3s ease;
+}
+
+.slider-card:hover .slider-logo {
+  filter: brightness(1.1) contrast(1.2);
+}
+
+.slider-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Przyciski Nawigacyjne Slidera */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(20, 20, 25, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.slider-arrow:hover {
+  background: rgba(255, 183, 0, 0.8);
+  color: #000;
+  border-color: #ffb700;
+}
+
+.slider-arrow.prev {
+  left: -10px;
+}
+
+.slider-arrow.next {
+  right: -10px;
+}
+
+/* ==========================================================
+   RESPONSYWNOŚĆ (RWD)
+   ========================================================== */
+@media (max-width: 992px) {
+  .organizer-card,
+  .partner-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .organizer-brand,
+  .partner-brand {
+    min-width: 100%;
+  }
+
+  .organizer-logo,
+  .partner-logo {
+    max-width: 200px;
+  }
+
+  .slider-card {
+    flex: 0 0 200px;
+    padding: 1.25rem 1rem;
+  }
 }
 </style>

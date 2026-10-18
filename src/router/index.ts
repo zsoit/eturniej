@@ -5,7 +5,11 @@ import NewsSingleView from '@/views/NewsSingleView.vue'
 import DynamicPageView from '@/views/DynamicPageView.vue'
 import PartnersView from '@/views/PartnersView.vue'
 import TerminarzComponent from '@/components/TerminarzComponent.vue'
-import RegulaminPage from '@/views/RegulaminView.vue'
+import RegulaminPage from '@/views/RegulaminView.vue' 
+import PrelekcjeView from '@/views/PrelekcjeView.vue' 
+import RegulaminyView from '@/views/RegulaminyView.vue' 
+
+
 
 
 const routes = [
@@ -30,6 +34,11 @@ const routes = [
     component: TerminarzComponent
   },
   {
+    path: "/regulaminy",
+    name: "turniej",
+    component: RegulaminyView
+  },
+  {
     path: '/aktualnosci/:id',
     name: 'news-single',
     component: NewsSingleView
@@ -43,6 +52,11 @@ const routes = [
       path: '/regulamin/:slug',
       name: 'RegulaminView',
       component: RegulaminPage
+    },
+    {
+      path: '/prelekcje',
+      name: 'PrelekcjeView',
+      component: PrelekcjeView
     },
   // Ścieżka wyłapująca nieznane adresy (tzw. catch-all) ZAWSZE musi być na samym dole
   {
