@@ -7,7 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/zsoit/', // <-- DODANE: ścieżka bazowa dla GitHub Pages (nazwa Twojego repozytorium)
+  // base: '/eturniej/', // Ścieżka bazowa dla GitHub Pages
   plugins: [
     vue(),
     vueJsx(),
@@ -17,5 +17,8 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
+  },
+  build: {
+    outDir: 'docs', // <-- Zmienia folder wynikowy budowania na /docs
   },
 })

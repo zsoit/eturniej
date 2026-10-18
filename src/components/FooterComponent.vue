@@ -41,9 +41,7 @@
 
       <!-- Dolna sekcja: Disclaimer prawny oraz Realizacja -->
       <div class="footer-bottom">
-        <p class="disclaimer-text">
-          This competition is not affiliated with or sponsored by Riot Games, Inc. or League of Legends Esports. This tournament is not affiliated with or sponsored by Electronic Arts Inc. or its licensors.
-        </p>
+   
 
         <div class="realization-section">
           <span class="footer-label">Realizacja</span>
