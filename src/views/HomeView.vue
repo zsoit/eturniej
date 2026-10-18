@@ -7,7 +7,7 @@ const mainTournaments = ref([
     title: 'League of Legends',
     type: 'Turniej Główny (5v5)',
     time: '09:00 - 15:00',
-    description: 'Starcie najlepszych drużyn w walce o tytuł Mistrza Koszalińskiego Dnia E-Sportu.',
+    description: 'Rywalizuj w League of Legends, EA Sports FC oraz Retro Gry, kibicuj najlepszym i wygrywaj nagrody! Turniej Finałowy 11.12.2026r. w ZSnr 1 EKONOM  Koszalin ul. Andersa 30 w godz. 9.00-15.00.',
     badge: 'Pula Nagród',
     accentColor: '#ffd700'
   },
@@ -15,8 +15,8 @@ const mainTournaments = ref([
     id: 'fc',
     title: 'EA Sports FC 26',
     type: 'Konsolowe Starcia (1v1)',
-    time: '10:00 - 16:00',
-    description: 'Wirtualne emocje na murawie – turniej indywidualny na najnowszej generacji konsol.',
+    time: ' ',
+    description: 'Udział dla uczestników KoDeS w dniu 11.12.2026r. Zapisy na miejscu w Sali Sportowej ZSnr 1 Ekonom.',
     badge: 'Open / Turniej 1v1',
     accentColor: '#00e5ff'
   },
@@ -24,8 +24,8 @@ const mainTournaments = ref([
     id: 'retro',
     title: 'Retro Gry',
     type: 'Retro Games',
-    time: '10:00 - 16:00',
-    description: 'Oldschoolowe doświadczenie, dla największych koneserów.',
+    time: ' ',
+    description: 'Udział w turnieju retro dla uczestników KoDeS w dniu 11.12.2026r. Zapisy na miejscu w Sali Sportowej ZSnr 1 Ekonom',
     badge: 'Open / Turniej 1v1',
     accentColor: '#00e5ff'
   }
@@ -77,6 +77,14 @@ const mainPartners = ref([
     logo: '/partners/pk-weii.png',
     alt: 'Logo Politechnika Koszalińska WEiI',
     description: 'Wydział Elektroniki i Informatyki Politechniki Koszalińskiej (WEiI) to jeden z wiodących i najbardziej dynamicznie rozwijających się wydziałów uczelni, kształcący specjalistów dla nowoczesnego sektora wysokich technologii (ICT).'
+  },
+  {
+    id: 'gordon',
+    category: 'Ekspert Technologiczny',
+    title: 'Hubert Gorgon GWR Blejch',
+    logo: '/gordon.jpg',
+    alt: 'Gordon',
+    description: 'Gordon GWR (Hubert Blejch) to ceniony twórca treści technologicznych, pasjonat modingu oraz bezkompromisowy ekspert w dziedzinie sprzętu komputerowego. Pochodzący z Koszalina streamer i edukator dał się poznać szerszej publiczności przede wszystkim jako dwukrotny rekordzista Księgi Rekordów Guinnessa w najdłuższym maratonie gier komputerowych oraz mobilnych. Jego gigantyczne wyzwania gamingowe, sięgające ponad 136 godzin ciągłej rozgrywki, dowiodły nie tylko niezwykłej wytrwałości, ale także ogromnego zaangażowania w sztukę elektronicznej rozrywki. Hubert to również triumfator prestiżowego konkursu x-kom PC Masters Challenge, gdzie zaprezentował mistrzowskie tempo i precyzję w ekspresowym montażu komputerów.'
   }
 ])
 
@@ -99,6 +107,7 @@ const rawPartnersList = ref([
   { id: 21, name: "Zespół Szkół nr 1 im. Mikołaja Kopernika w Koszalinie", category: "Główni Partnerzy Sektora Edukacji", logo_url: "partners/zs-kopernik.png", type: "zs1", website: "http://www.ekonom.koszalin.pl/" },
 
   { id: 22, name: "Miasto Koszalin", category: "Patronat", logo_url: "partners/koszalin_kon.png", type: "koszalin-miasto", website: "https://koszalin.pl" },
+
 
   // { id: 23, name: "Ministerstwo Cyfryzacji", category: "Główny Partner Sektora Publicznego", logo_url: "assets/logo_url_6ace4367d4379.png", type: "ministerstwo-cyfryzacji", website: "https://www.gov.pl/web/cyfryzacja" }
 ])
@@ -163,7 +172,7 @@ onMounted(() => {
         </div>
 
         <h1 class="hero-main-title">
-          Koszaliński Dzień <br />
+         2 Koszaliński Dzień <br />
           <span class="gold-gradient-text">E-Sportu</span>
         </h1>
 
@@ -176,9 +185,6 @@ onMounted(() => {
             <span>Aktualności & Zapisy</span>
             <span class="btn-arrow">→</span>
           </router-link>
-          <a href="/regulaminy" class="apple-button secondary-glass">
-            Zapisz się
-          </a>
         </div>
       </div>
     </section>
@@ -236,7 +242,7 @@ onMounted(() => {
     <section class="section-wrapper scroll-animate">
       <div class="section-heading">
         <span class="sub-heading-tag">Wsparcie i Patronat</span>
-        <h2 class="main-heading">Wspierają nas</h2>
+        <h2 class="main-heading">Partnerzy, Sponsorzy i Media</h2>
       </div>
 
       <div class="slider-wrapper">
@@ -246,8 +252,7 @@ onMounted(() => {
           <a 
             v-for="item in sliderPartners" 
             :key="item.id" 
-            :href="item.website" 
-            target="_blank" 
+            href="/partnerzy" 
             rel="noopener noreferrer"
             class="slider-card apple-glass-card hover-glow-effect"
           >

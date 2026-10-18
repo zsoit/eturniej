@@ -9,7 +9,7 @@ const regulationsCards = ref([
     category: 'Oficjalny Dokument',
     description: 'Zapoznaj się z pełnym regulaminem, zasadami fair play, formatem rozgrywek oraz harmonogramem turniejów League of Legends.',
     linkText: 'Zobacz Regulamin',
-    linkUrl: '/kodes_regulamin.pdf', // Wewnętrzny router-link
+    linkUrl: '/k_regulamin.pdf', // Wewnętrzny router-link
     isExternal: false,
     icon: '📜',
     accentColor: '#ffd700' // Złoty
@@ -108,6 +108,7 @@ onMounted(() => {
               v-if="!item.isExternal" 
               :to="item.linkUrl" 
               class="apple-button primary-gold reg-btn"
+              target="_blank"
             >
               <span>{{ item.linkText }}</span>
               <span class="btn-arrow">→</span>
